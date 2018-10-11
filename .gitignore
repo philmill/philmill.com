@@ -3,9 +3,13 @@
 .cache
 node_modules
 yarn-error.log
+.gatsby-context.js
+.DS_Store
+.intermediate-representation/
 
 # Build directory
 /public
 
 # IDE Junk
 .idea
+.vscode
