@@ -26,13 +26,13 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            writings of a pandimensional loop oddity
           </Link>
         </h1>
       )
     } else {
       header = (
-        <h3
+        <p
           style={{
             fontFamily: 'Montserrat, sans-serif',
             marginTop: 0,
@@ -47,9 +47,9 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            back to the beginning ...
           </Link>
-        </h3>
+        </p>
       )
     }
     return (
