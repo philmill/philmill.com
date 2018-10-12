@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
-import { Link,graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
+import kebabCase from 'lodash/kebabCase'
 
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
@@ -12,7 +13,8 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const siteDescription = post.excerpt
-    const { previous, next } = this.props.pageContext
+    const tags = post.frontmatter.tags
+    const { previousPage, nextPage } = this.props.pageContext
 
     return (
       <Layout location={this.props.location}>
@@ -38,8 +40,27 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
+        {tags && tags.length > 0 ? (
+          <Fragment>
+            ><h3>Tagged with:</h3>
+            <ul
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                listStyle: 'none',
+                padding: 0,
+              }}
+            >
+              {tags.map((tag, index) => (
+                <li key={index}>
+                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+                </li>
+              ))}
+            </ul>
+          </Fragment>
+        ) : null}
         <Bio />
-
         <ul
           style={{
             display: 'flex',
@@ -50,20 +71,18 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           <li>
-            {
-              previous &&
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+            {previousPage && (
+              <Link to={previousPage.fields.slug} rel="prev">
+                ← {previousPage.frontmatter.title}
               </Link>
-            }
+            )}
           </li>
           <li>
-            {
-              next &&
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+            {nextPage && (
+              <Link to={nextPage.fields.slug} rel="nextPage">
+                {nextPage.frontmatter.title} →
               </Link>
-            }
+            )}
           </li>
         </ul>
       </Layout>
@@ -88,6 +107,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        tags
       }
     }
   }

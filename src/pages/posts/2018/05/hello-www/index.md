@@ -1,5 +1,4 @@
 ---
-path: 'hello-www'
 date: '2018-05-31T17:12:00Z'
 title: 'My First Gatsby Post'
 ---

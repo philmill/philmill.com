@@ -1,7 +1,7 @@
 ---
-path: '/notes-on-intercepted-episode-58'
 date: '2018-06-01T00:01:00Z'
-title: 'The beginning of an end to Establishment Democrats'
+title: 'The End of Establishment Democrats Begins'
+tags: ['democrats', 'ICE', 'democratic socialists', 'socialism', 'politics']
 ---
 
 Some background on the U.S. Immigration and Customs Enforcement (ICE) before we dive into NY congressional candidate Alexandria Ocasio-Cortez's view of it as a backdrop to my sentiment of established democratic representatives.
