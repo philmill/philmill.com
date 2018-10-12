@@ -6,6 +6,7 @@ yarn-error.log
 .gatsby-context.js
 .DS_Store
 .intermediate-representation/
+yarn.lock
 
 # Build directory
 /public
