@@ -5,7 +5,7 @@ import get from 'lodash/get'
 import kebabCase from 'lodash/kebabCase'
 
 import Bio from '../components/Bio'
-import Layout from '../components/layout'
+import Layout from '../components/BaseLayout'
 import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {
