@@ -22,18 +22,7 @@ Let us note that Ocasio-Cortez isn't promoting the abolishment of all our immigr
 
 [Read or listen to full The Intercept Episode 58: May 30, 2018](https://theintercept.com/2018/05/30/white-fear-as-the-gop-veers-toward-fascism-establishment-democrats-face-a-grassroots-insurgency/)
 
-[^1]:
-
-  https://www.dhs.gov/sites/default/files/publications/DHS%20FY18%20BIB%20Final.pdf
-
-[^2]:
-
-  https://www.justice.gov/file/968931/download This report didn't include the actual fiscal amount that was granted to the FBI. It also employs 33,533 direct positions for a total of 65,532 employees, but doesn't specify the difference between those and FTEs.
-
-[^3]:
-
-  https://www.justice.gov/jmd/organization-mission-and-functions-manual https://www.justice.gov/about
-
-[^4]:
-
-  Document from DHS Office of Inspector General https://www.oversight.gov/report/dhs/major-management-and-performance-challenges-facing-department-homeland-security-1
+[^1]: https://www.dhs.gov/sites/default/files/publications/DHS%20FY18%20BIB%20Final.pdf
+[^2]: https://www.justice.gov/file/968931/download This report didn't include the actual fiscal amount that was granted to the FBI. It also employs 33,533 direct positions for a total of 65,532 employees, but doesn't specify the difference between those and FTEs.
+[^3]: https://www.justice.gov/jmd/organization-mission-and-functions-manual https://www.justice.gov/about
+[^4]: Document from DHS Office of Inspector General https://www.oversight.gov/report/dhs/major-management-and-performance-challenges-facing-department-homeland-security-1
