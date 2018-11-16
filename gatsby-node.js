@@ -19,6 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
             ) {
               edges {
                 node {
+                  id
                   fields {
                     slug
                   }
@@ -26,6 +27,17 @@ exports.createPages = ({ graphql, actions }) => {
                     title
                     tags
                     path
+                  }
+                }
+              }
+            }
+            allFile(filter: { ext: { eq: ".md" } }) {
+              edges {
+                node {
+                  relativePath
+                  modifiedTime(formatString: "MMMM DD, YYYY")
+                  childMarkdownRemark {
+                    id
                   }
                 }
               }
@@ -40,6 +52,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         const posts = result.data.allMarkdownRemark.edges
+        // markdown files
+        const files = result.data.allFile.edges
         // Tag pages:
         let tags = []
 
@@ -66,6 +80,10 @@ exports.createPages = ({ graphql, actions }) => {
             })
           })
 
+          const { node: md } = files.find(
+            file => file.node.childMarkdownRemark.id === post.node.id
+          )
+
           createPage({
             path: post.node.frontmatter.path || post.node.fields.slug,
             component: blogPostTemplate,
@@ -73,6 +91,8 @@ exports.createPages = ({ graphql, actions }) => {
               slug: post.node.fields.slug,
               previousPage,
               nextPage,
+              lastEdited: md.modifiedTime,
+              relativePath: md.relativePath,
             },
           })
         })
@@ -80,6 +100,7 @@ exports.createPages = ({ graphql, actions }) => {
     )
   })
 }
+//https://github.com/philmill/philmill.com/commits/master/src/pages/posts/2018/06/notes-on-intercepted-episode-58/index.md
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions

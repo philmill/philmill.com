@@ -14,7 +14,12 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const siteDescription = post.excerpt
     const tags = post.frontmatter.tags
-    const { previousPage, nextPage } = this.props.pageContext
+    const {
+      previousPage,
+      nextPage,
+      lastEdited,
+      relativePath,
+    } = this.props.pageContext
 
     return (
       <Layout location={this.props.location}>
@@ -32,7 +37,23 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date}
+          Published {post.frontmatter.date}
+        </p>
+        <p
+          style={{
+            ...scale(-1 / 4),
+            display: 'block',
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-1.3),
+          }}
+        >
+          <a
+            href={`https://github.com/philmill/philmill.com/commits/master/src/pages/${relativePath}`}
+            referrerpolicy="origin"
+            target="_blank"
+          >
+            Edited {lastEdited}
+          </a>
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
