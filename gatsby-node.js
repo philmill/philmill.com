@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
                   frontmatter {
                     title
                     tags
+                    path
                   }
                 }
               }
@@ -66,7 +67,7 @@ exports.createPages = ({ graphql, actions }) => {
           })
 
           createPage({
-            path: post.node.fields.slug,
+            path: post.node.frontmatter.path || post.node.fields.slug,
             component: blogPostTemplate,
             context: {
               slug: post.node.fields.slug,

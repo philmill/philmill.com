@@ -2,6 +2,7 @@
 date: '2018-06-01T00:01:00Z'
 title: 'The End of Establishment Democrats Begins'
 tags: ['democrats', 'ICE', 'democratic socialists', 'socialism', 'politics']
+path: '/grassroots-ending-establishment-democrats'
 ---
 
 Some background on the U.S. Immigration and Customs Enforcement (ICE) before we dive into NY congressional candidate Alexandria Ocasio-Cortez's view of it as a backdrop to my sentiment of established democratic representatives.

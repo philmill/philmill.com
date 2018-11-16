@@ -72,14 +72,20 @@ class BlogPostTemplate extends React.Component {
         >
           <li>
             {previousPage && (
-              <Link to={previousPage.fields.slug} rel="prev">
+              <Link
+                to={previousPage.frontmatter.path || previousPage.fields.slug}
+                rel="prev"
+              >
                 ← {previousPage.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {nextPage && (
-              <Link to={nextPage.fields.slug} rel="nextPage">
+              <Link
+                to={nextPage.frontmatter.path || previousPage.fields.slug}
+                rel="nextPage"
+              >
                 {nextPage.frontmatter.title} →
               </Link>
             )}
@@ -108,6 +114,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        path
       }
     }
   }
