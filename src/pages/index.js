@@ -17,13 +17,15 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <Layout location={this.props.location}>
+      <Layout
+        location={this.props.location}
+        style={{ minHeight: rhythm(posts.length * 16) }}
+      >
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={siteTitle}
         />
-        <Bio />
         {posts.map(({ node }) => {
           const title =
             get(node, 'frontmatter.title') ||
@@ -48,6 +50,7 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <Bio />
       </Layout>
     )
   }
@@ -63,7 +66,10 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 10
+    ) {
       edges {
         node {
           excerpt

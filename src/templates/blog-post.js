@@ -63,7 +63,7 @@ class BlogPostTemplate extends React.Component {
         />
         {tags && tags.length > 0 ? (
           <Fragment>
-            ><h3>Tagged with:</h3>
+            <h3>Tagged with:</h3>
             <ul
               style={{
                 display: 'flex',
