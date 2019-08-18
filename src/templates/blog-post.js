@@ -1,28 +1,28 @@
-import React, { Fragment } from 'react'
-import Helmet from 'react-helmet'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
-import kebabCase from 'lodash/kebabCase'
+import React, { Fragment } from 'react';
+import Helmet from 'react-helmet';
+import { Link, graphql } from 'gatsby';
+import get from 'lodash/get';
+import kebabCase from 'lodash/kebabCase';
 
-import Bio from '../components/Bio'
-import Layout from '../components/BaseLayout'
-import { rhythm, scale } from '../utils/typography'
+import Bio from '../components/Bio';
+import BaseLayout from '../components/BaseLayout';
+import { rhythm, scale } from '../utils/typography';
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const siteDescription = post.excerpt
-    const tags = post.frontmatter.tags
+    const post = this.props.data.markdownRemark;
+    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+    const siteDescription = post.excerpt;
+    const tags = post.frontmatter.tags;
     const {
       previousPage,
       nextPage,
       lastEdited,
       relativePath,
-    } = this.props.pageContext
+    } = this.props.pageContext;
 
     return (
-      <Layout location={this.props.location}>
+      <BaseLayout location={this.props.location}>
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
@@ -112,12 +112,12 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-      </Layout>
-    )
+      </BaseLayout>
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -139,4 +139,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

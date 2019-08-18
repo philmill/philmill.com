@@ -1,15 +1,34 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React, { PureComponent } from 'react';
+import { Link } from 'gatsby';
 
-import { rhythm, scale } from '../utils/typography'
-import cliffPic from '../assets/black-white-cliff_1080.png'
+import { rhythm, scale } from '../utils/typography';
+import cliffPic from '../assets/black-white-cliff_1080.png';
 
-class BaseLayout extends React.Component {
+class BaseLayout extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.mobileLimitWidth = 468;
+    this.state = { width: 0, height: 0 };
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  };
+
   render() {
-    const { location, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
-    let footer
+    const { location, children } = this.props;
+    const rootPath = `${__PATH_PREFIX__}/`;
+    let header;
+    let footer;
 
     if (location.pathname === rootPath) {
       header = (
@@ -22,11 +41,11 @@ class BaseLayout extends React.Component {
         >
           Perspectives of Phil Mill
         </h1>
-      )
+      );
 
-      const footerBg = `url(${cliffPic}) no-repeat fixed 0% 140%`
+      const footerBg = `url(${cliffPic}) no-repeat fixed 0% 140%`;
 
-      footer = (
+      footer = this.state.width >= this.mobileLimitWidth && (
         <div
           style={{
             position: 'fixed',
@@ -38,7 +57,7 @@ class BaseLayout extends React.Component {
             filter: 'brightness(110%)',
           }}
         />
-      )
+      );
     } else {
       header = (
         <p
@@ -59,8 +78,8 @@ class BaseLayout extends React.Component {
             back to the beginning ...
           </Link>
         </p>
-      )
-      footer = null
+      );
+      footer = null;
     }
 
     return (
@@ -77,8 +96,8 @@ class BaseLayout extends React.Component {
         {children}
         {footer}
       </div>
-    )
+    );
   }
 }
 
-export default BaseLayout
+export default BaseLayout;

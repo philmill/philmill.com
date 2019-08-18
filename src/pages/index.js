@@ -1,23 +1,23 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import get from 'lodash/get';
+import Helmet from 'react-helmet';
 
-import Bio from '../components/Bio'
-import Layout from '../components/BaseLayout'
-import { rhythm } from '../utils/typography'
+import Bio from '../components/Bio';
+import BaseLayout from '../components/BaseLayout';
+import { rhythm } from '../utils/typography';
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const siteDescription = get(
       this,
       'props.data.site.siteMetadata.description'
-    )
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    );
+    const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
     return (
-      <Layout
+      <BaseLayout
         location={this.props.location}
         style={{ minHeight: rhythm(posts.length * 16) }}
       >
@@ -30,7 +30,7 @@ class BlogIndex extends React.Component {
           const title =
             get(node, 'frontmatter.title') ||
             node.frontmatter.path ||
-            node.fields.slug
+            node.fields.slug;
           return (
             <div key={node.frontmatter.path || node.fields.slug}>
               <h3
@@ -48,15 +48,15 @@ class BlogIndex extends React.Component {
               <small>{node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
-          )
+          );
         })}
         <Bio />
-      </Layout>
-    )
+      </BaseLayout>
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -85,4 +85,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

@@ -1,33 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // Components
-import { Link, graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby';
+import { rhythm } from '../utils/typography';
+import BaseLayout from '../components/BaseLayout';
+import Bio from '../components/Bio';
 
-const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMarkdownRemark
+const Tags = ({ location, pageContext, data }) => {
+  const { tag } = pageContext;
+  const { edges, totalCount } = data.allMarkdownRemark;
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
-  } tagged with "${tag}"`
+  } tagged with "${tag}"`;
 
   return (
-    <div>
+    <BaseLayout location={location}>
       <h1>{tagHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
-          const { title, path } = node.frontmatter
+          const { title, path } = node.frontmatter;
           return (
             <li key={path || node.fields.slug}>
               <Link to={path || node.fields.slug}>{title}</Link>
             </li>
-          )
+          );
         })}
       </ul>
-      <Link to="/tags">All tags</Link>
-    </div>
-  )
-}
+      <div style={{ marginBottom: rhythm(1) }}>
+        <Link to="/tags">Explore tags</Link>
+      </div>
+      <Bio />
+    </BaseLayout>
+  );
+};
 
 Tags.propTypes = {
   pageContext: PropTypes.shape({
@@ -51,9 +57,9 @@ Tags.propTypes = {
       ),
     }),
   }),
-}
+};
 
-export default Tags
+export default Tags;
 
 export const pageQuery = graphql`
   query($tag: String) {
@@ -76,4 +82,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
