@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 // Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
+import 'typeface-montserrat';
+import 'typeface-merriweather';
 
-import profilePic from '../assets/philmill-van.png'
-import { rhythm } from '../utils/typography'
+import profilePic from '../assets/philmill-van.png';
+import { rhythm } from '../utils/typography';
 
 class Bio extends React.Component {
   render() {
@@ -29,15 +29,15 @@ class Bio extends React.Component {
         />
         <p>
           Written by a pandimensional loop oddity existing in the Multiverse
-          otherwise know as a Phil Mill phenomena who lives and works in
-          Asheville creating.{' '}
+          otherwise know as a Phil Mill phenomena who lives and works in United
+          States creating.{' '}
           <a href="https://twitter.com/philmillme">
             Follow @philmillme on Twitter
           </a>
         </p>
       </div>
-    )
+    );
   }
 }
 
-export default Bio
+export default Bio;
