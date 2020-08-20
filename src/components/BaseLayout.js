@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'gatsby';
+import throttle from 'lodash/throttle';
 
 import { rhythm, scale } from '../utils/typography';
 import cliffPic from '../assets/black-white-cliff_1080.png';
@@ -8,21 +9,37 @@ class BaseLayout extends PureComponent {
   constructor(props) {
     super(props);
     this.mobileLimitWidth = 468;
-    this.state = { width: 0, height: 0 };
+    this.state = {
+      width: 0,
+      height: 0,
+      scrollY: 0,
+    };
   }
 
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener('scroll', this.throttlePosition);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener('scroll', this.throttlePosition);
   }
 
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   };
+
+  updateScrollY = () => {
+    this.setState({ scrollY: Math.round(window.scrollY) });
+  };
+
+  throttlePosition = throttle(this.updateScrollY, 300);
+
+  showFooter() {
+    return this.state.width >= this.mobileLimitWidth;
+  }
 
   render() {
     const { location, children } = this.props;
@@ -43,9 +60,11 @@ class BaseLayout extends PureComponent {
         </h1>
       );
 
-      const footerBg = `url(${cliffPic}) no-repeat fixed 0% 140%`;
+      const footerBg = `url(${cliffPic}) no-repeat fixed`;
+      const backgroundPosition =
+        this.state.scrollY < 100 ? '0% 140%' : '0% 200%';
 
-      footer = this.state.width >= this.mobileLimitWidth && (
+      footer = this.showFooter() && (
         <div
           style={{
             position: 'fixed',
@@ -54,7 +73,9 @@ class BaseLayout extends PureComponent {
             width: '100%',
             height: rhythm(13),
             background: footerBg,
+            backgroundPosition,
             filter: 'brightness(110%)',
+            transition: 'background-position 300ms ease',
           }}
         />
       );
