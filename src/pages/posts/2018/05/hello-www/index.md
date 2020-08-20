@@ -2,7 +2,7 @@
 date: '2018-05-31T17:12:00Z'
 title: 'My First Gatsby Post'
 tags: ['gatsby']
-path: '/first-gatsby-post'
+path: '/2018/05/first-gatsby-post'
 ---
 
 Trying this static site generator [Gatsby](https://www.gatsbyjs.org) since I've
