@@ -65,27 +65,31 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
+        <Bio />
         {tags && tags.length > 0 ? (
           <Fragment>
-            <h3>Tagged with:</h3>
+            <h4>Tagged with:</h4>
             <ul
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                justifyContent: 'space-between',
                 listStyle: 'none',
                 padding: 0,
               }}
             >
               {tags.map((tag, index) => (
-                <li key={index}>
+                <li key={index} style={{ marginRight: rhythm(0.5) }}>
                   <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
                 </li>
               ))}
             </ul>
           </Fragment>
         ) : null}
-        <Bio />
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
         <ul
           style={{
             display: 'flex',

@@ -13,7 +13,6 @@ class Bio extends React.Component {
       <div
         style={{
           display: 'flex',
-          marginBottom: rhythm(2.5),
         }}
       >
         <img
@@ -28,7 +27,7 @@ class Bio extends React.Component {
             borderRadius: '56px',
           }}
         />
-        <p>
+        <p style={{ marginBottom: 0 }}>
           Written by a pandimensional loop oddity existing in the Multiverse
           otherwise know as a Phil Mill phenomena who lives and works in United
           States creating.{' '}

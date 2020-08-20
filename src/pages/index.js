@@ -56,6 +56,11 @@ class BlogIndex extends React.Component {
             </div>
           );
         })}
+        <hr
+          style={{
+            marginBottom: rhythm(1),
+          }}
+        />
         <Bio />
       </BaseLayout>
     );
