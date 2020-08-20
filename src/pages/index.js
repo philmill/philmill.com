@@ -48,7 +48,7 @@ class BlogIndex extends React.Component {
               </h3>
               {node.frontmatter.featuredImage && (
                 <Img
-                  sizes={node.frontmatter.featuredImage.childImageSharp.sizes}
+                  fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
                 />
               )}
               <small>{node.frontmatter.date}</small>
@@ -88,8 +88,8 @@ export const pageQuery = graphql`
             path
             featuredImage {
               childImageSharp {
-                sizes(maxWidth: 630) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 630) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }

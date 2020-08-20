@@ -57,7 +57,7 @@ class BlogPostTemplate extends React.Component {
           </a>
         </p>
         {post.frontmatter.featuredImage && (
-          <Img sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
+          <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
         )}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -142,8 +142,8 @@ export const pageQuery = graphql`
         path
         featuredImage {
           childImageSharp {
-            sizes(maxWidth: 630) {
-              ...GatsbyImageSharpSizes
+            fluid(maxWidth: 630) {
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
