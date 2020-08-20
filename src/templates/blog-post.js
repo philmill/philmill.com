@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 
@@ -55,6 +56,9 @@ class BlogPostTemplate extends React.Component {
             Edited {lastEdited}
           </a>
         </p>
+        {post.frontmatter.featuredImage && (
+          <Img sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
+        )}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -136,6 +140,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         tags
         path
+        featuredImage {
+          childImageSharp {
+            sizes(maxWidth: 630) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
     }
   }

@@ -1,8 +1,9 @@
 ---
 date: '2020-08-18T00:01:00Z'
-title: 'Should you vote for Biden?'
+title: 'Capital Fools 2020'
 tags: ['democrats', 'electoral', 'politics']
-path: '/establishment-democrats-remain-the-only-option'
+path: '/2020/08/capital-fools-2020'
+featuredImage: './learning-causes-extinction-lesson-plan-4-3.jpg'
 ---
 
 ### A Context in Brief
