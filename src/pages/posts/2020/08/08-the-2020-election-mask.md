@@ -57,9 +57,8 @@ the same.
 > cannot be restored. The mask is off. The façade is gone. Biden cannot bring it
 > back.
 
-Quote from a recent
-[Chris Hedges](https://scheerpost.com/2020/08/10/chris-hedges-americas-death-march/)
-article.
+Quote from a recent Chris Hedges 
+[Sheerpost article](https://scheerpost.com/2020/08/10/chris-hedges-americas-death-march/).
 
 ### Conclusion
 
