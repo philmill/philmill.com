@@ -1,9 +1,9 @@
 ---
 date: '2020-08-18T00:01:00Z'
-title: 'Capital Fools 2020'
+title: 'Vote Biden 2020?'
 tags: ['democrats', 'electoral', 'politics']
 path: '/2020/08/capital-fools-2020'
-featuredImage: './learning-causes-extinction-lesson-plan-4-3.jpg'
+featuredImage: './CapitalFools.png'
 ---
 
 ### A Context in Brief
