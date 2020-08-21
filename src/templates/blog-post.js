@@ -22,29 +22,33 @@ class BlogPostTemplate extends React.Component {
       relativePath,
     } = this.props.pageContext;
 
+    const metaData = [
+      {
+        name: 'description',
+        content: siteDescription,
+      },
+      {
+        name: 'og:title',
+        content: post.frontmatter.title,
+      },
+      {
+        name: 'og:description',
+        content: post.excerpt,
+      },
+    ];
+
+    if (post.frontmatter.featuredImage)
+      metaData.push({
+        name: 'og:image',
+        content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+      });
+
     return (
       <BaseLayout location={this.props.location}>
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           title={`${post.frontmatter.title} | ${siteTitle}`}
-          meta={[
-            {
-              name: 'description',
-              content: siteDescription,
-            },
-            {
-              name: 'og:title',
-              content: post.frontmatter.title,
-            },
-            {
-              name: 'og:description',
-              content: post.excerpt,
-            },
-            {
-              name: 'og:image',
-              content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
-            },
-          ]}
+          meta={metaData}
         />
         <h1>{post.frontmatter.title}</h1>
         <p
