@@ -26,8 +26,25 @@ class BlogPostTemplate extends React.Component {
       <BaseLayout location={this.props.location}>
         <Helmet
           htmlAttributes={{ lang: 'en' }}
-          meta={[{ name: 'description', content: siteDescription }]}
           title={`${post.frontmatter.title} | ${siteTitle}`}
+          meta={[
+            {
+              name: 'description',
+              content: siteDescription,
+            },
+            {
+              name: 'og:title',
+              content: post.frontmatter.title,
+            },
+            {
+              name: 'og:description',
+              content: post.excerpt,
+            },
+            {
+              name: 'og:image',
+              content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+            },
+          ]}
         />
         <h1>{post.frontmatter.title}</h1>
         <p
