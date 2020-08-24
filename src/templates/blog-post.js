@@ -35,6 +35,14 @@ class BlogPostTemplate extends React.Component {
         name: 'og:description',
         content: post.excerpt,
       },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:creator',
+        content: '@philmillme',
+      },
     ];
 
     if (post.frontmatter.featuredImage)
