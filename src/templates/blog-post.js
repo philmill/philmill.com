@@ -80,6 +80,21 @@ class BlogPostTemplate extends React.Component {
         {post.frontmatter.featuredImage && (
           <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
         )}
+        {post.frontmatter.photoCredit && (
+          <p
+            style={{
+              ...scale(-1 / 5),
+              marginBottom: rhythm(1),
+              lineHeight: rhythm(0.7),
+              color: 'hsla(0,0%,0%,0.59)',
+              fontStyle: 'italic',
+            }}
+          >
+            <span
+              dangerouslySetInnerHTML={{ __html: post.frontmatter.photoCredit }}
+            />
+          </p>
+        )}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -172,6 +187,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        photoCredit
       }
     }
   }

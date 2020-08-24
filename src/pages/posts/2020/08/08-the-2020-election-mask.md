@@ -4,6 +4,7 @@ title: 'Vote Biden 2020?'
 tags: ['democrats', 'electoral', 'politics']
 path: '/2020/08/capital-fools-2020'
 featuredImage: './CapitalFools.png'
+photoCredit: 'Polar bear pic from elementary school lesson guide on extension at <a href="https://www.scholastic.com/teachers/lesson-plans/teaching-content/learning-causes-extinction/">scholastic.com</a>. Graphics compiled by me.'
 ---
 
 ### A Context in Brief
