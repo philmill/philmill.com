@@ -13,6 +13,7 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+    const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const siteDescription = post.excerpt;
     const tags = post.frontmatter.tags;
     const {
@@ -57,11 +58,15 @@ class BlogPostTemplate extends React.Component {
       metaData.push(
         {
           name: 'og:image',
-          content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+          content: `${siteUrl}${
+            post.frontmatter.featuredImage.childImageSharp.fluid.src
+          }`,
         },
         {
           name: 'twitter:image',
-          content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+          content: `${siteUrl}${
+            post.frontmatter.featuredImage.childImageSharp.fluid.src
+          }`,
         }
       );
 
@@ -191,6 +196,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
