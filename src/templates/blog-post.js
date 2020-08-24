@@ -43,13 +43,27 @@ class BlogPostTemplate extends React.Component {
         name: 'twitter:creator',
         content: '@philmillme',
       },
+      {
+        name: 'twitter:title',
+        content: post.frontmatter.title,
+      },
+      {
+        name: 'twitter:description',
+        content: post.excerpt,
+      },
     ];
 
     if (post.frontmatter.featuredImage)
-      metaData.push({
-        name: 'og:image',
-        content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
-      });
+      metaData.push(
+        {
+          name: 'og:image',
+          content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+        },
+        {
+          name: 'twitter:image',
+          content: post.frontmatter.featuredImage.childImageSharp.fluid.src,
+        }
+      );
 
     return (
       <BaseLayout location={this.props.location}>
