@@ -4,7 +4,10 @@ title: 'Vote Biden 2020?'
 tags: ['democrats', 'electoral', 'politics']
 path: '/2020/08/capital-fools-2020'
 featuredImage: './CapitalFools.png'
-photoCredit: 'Polar bear pic from elementary school lesson guide on extension at <a href="https://www.scholastic.com/teachers/lesson-plans/teaching-content/learning-causes-extinction/">scholastic.com</a>. Graphics compiled by me.'
+photoCredit:
+  'Polar bear pic from elementary school lesson guide on extension at <a
+  href="https://www.scholastic.com/teachers/lesson-plans/teaching-content/learning-causes-extinction/">scholastic.com</a>.
+  Graphics compiled by me.'
 ---
 
 ### A Context in Brief
@@ -22,9 +25,10 @@ As a radical, I have little faith in electoral politics. A vote for either of
 these disgraceful hollow talking heads is a vote for more of the same endless
 wars. Is one worse than the other, I really believe it depends on which side of
 the gun you are on and how many family members you've lost to American
-imperialism. It depends on your class status in the states. While canvasing for
-Bernie I met people who had never voted, ever for any reason. To them policy
-doesn't affect their lives. They are the forgotten.
+imperialism. In the states, it depends on your class status, money in the bank,
+and the color of your skin. While canvasing for Bernie I met people who had
+never voted, ever for any reason. To them policy doesn't affect their lives.
+They are the forgotten.
 
 > My vote will probably not get me a job or a home or help me through school or
 > prevent another Vietnam or a third world war, but it may keep me here long
@@ -58,7 +62,7 @@ the same.
 > cannot be restored. The mask is off. The façade is gone. Biden cannot bring it
 > back.
 
-Quote from a recent Chris Hedges 
+Quote from a recent Chris Hedges
 [Sheerpost article](https://scheerpost.com/2020/08/10/chris-hedges-americas-death-march/).
 
 ### Conclusion
