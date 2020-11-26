@@ -58,15 +58,11 @@ class BlogPostTemplate extends React.Component {
       metaData.push(
         {
           name: 'og:image',
-          content: `${siteUrl}${
-            post.frontmatter.featuredImage.childImageSharp.fluid.src
-          }`,
+          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.fluid.src}`,
         },
         {
           name: 'twitter:image',
-          content: `${siteUrl}${
-            post.frontmatter.featuredImage.childImageSharp.fluid.src
-          }`,
+          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.fluid.src}`,
         }
       );
 
