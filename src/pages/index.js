@@ -33,9 +33,20 @@ class BlogIndex extends React.Component {
             node.frontmatter.path ||
             node.fields.slug;
           return (
-            <div key={node.frontmatter.path || node.fields.slug}>
+            <div
+              key={node.frontmatter.path || node.fields.slug}
+              style={{ marginBottom: rhythm(2) }}
+            >
+              {node.frontmatter.featuredImage && (
+                <Link to={node.frontmatter.path || node.fields.slug}>
+                  <Img
+                    fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
+                  />
+                </Link>
+              )}
               <h3
                 style={{
+                  marginTop: rhythm(3 / 4),
                   marginBottom: rhythm(1 / 4),
                 }}
               >
@@ -46,11 +57,6 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              {node.frontmatter.featuredImage && (
-                <Img
-                  fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
-                />
-              )}
               <small>{node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
