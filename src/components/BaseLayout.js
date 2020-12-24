@@ -1,14 +1,15 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { Link } from 'gatsby';
 import throttle from 'lodash/throttle';
 
 import { rhythm, scale } from '../utils/typography';
 import cliffPic from '../assets/black-white-cliff_1080.png';
+import profilePic from '../assets/philmill-van.png';
 
 class BaseLayout extends PureComponent {
   constructor(props) {
     super(props);
-    this.mobileLimitWidth = 468;
+    this.mobileLimitHeight = 736;
     this.state = {
       width: 0,
       height: 0,
@@ -18,13 +19,25 @@ class BaseLayout extends PureComponent {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-    window.addEventListener('scroll', this.throttlePosition);
+    if (this.rootPath) {
+      window.addEventListener('resize', this.updateWindowDimensions);
+      window.addEventListener('scroll', this.throttledUpdateScrollY);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-    window.removeEventListener('scroll', this.throttlePosition);
+    if (this.rootPath) {
+      window.removeEventListener('resize', this.updateWindowDimensions);
+      window.removeEventListener('scroll', this.throttledUpdateScrollY);
+    }
+  }
+
+  get rootPath() {
+    return this.props.location.pathname === `${__PATH_PREFIX__}/`;
+  }
+
+  get showFooter() {
+    return this.rootPath && this.state.height > this.mobileLimitHeight;
   }
 
   updateWindowDimensions = () => {
@@ -35,43 +48,28 @@ class BaseLayout extends PureComponent {
     this.setState({ scrollY: Math.round(window.scrollY) });
   };
 
-  throttlePosition = throttle(this.updateScrollY, 300);
-
-  showFooter() {
-    return this.state.width >= this.mobileLimitWidth;
-  }
+  throttledUpdateScrollY = throttle(this.updateScrollY, 300);
 
   render() {
-    const { location, children } = this.props;
-    const rootPath = `${__PATH_PREFIX__}/`;
     let header;
     let footer;
+    let sideNav;
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.1),
-            marginBottom: rhythm(1.1),
-            marginTop: 0,
-          }}
-        >
-          Perspectives of Phil Mill
-        </h1>
-      );
+    if (this.rootPath) {
+      header = <h1>Perspectives of Phil Mill</h1>;
 
       const footerBg = `url(${cliffPic}) no-repeat fixed`;
       const backgroundPosition =
-        this.state.scrollY < 100 ? '0% 140%' : '0% 200%';
+        this.state.scrollY < 100 ? '10% 155%' : '0% 200%';
 
-      footer = this.showFooter() && (
+      footer = this.showFooter && (
         <div
           style={{
             position: 'fixed',
             left: 0,
             bottom: 0,
             width: '100%',
-            height: rhythm(13),
+            height: rhythm(5.5),
             background: footerBg,
             backgroundPosition,
             filter: 'brightness(110%)',
@@ -80,43 +78,68 @@ class BaseLayout extends PureComponent {
         />
       );
     } else {
-      header = (
-        <p
+      sideNav = (
+        <div
           style={{
-            fontFamily: 'Montserrat, sans-serif',
-            marginTop: 0,
-            marginBottom: rhythm(-1),
+            position: 'sticky',
+            top: 0,
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            padding: `${rhythm(0.3)} ${rhythm(0.6)}`,
+            backgroundColor: 'white',
+            marginBottom: rhythm(-1.6),
           }}
         >
           <Link
             style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit',
+              display: 'flex',
+              alignItems: 'center',
             }}
             to={'/'}
           >
-            back to the beginning ...
+            <img
+              src={profilePic}
+              alt="Phil Mill"
+              style={{
+                flex: '1 0 auto',
+                marginRight: rhythm(0.5),
+                marginBottom: 0,
+                width: '26px',
+                height: '26px',
+                borderRadius: '26px',
+              }}
+            />
+            <span
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                ...scale(-1 / 5),
+              }}
+            >
+              perspectives
+            </span>
           </Link>
-        </p>
+        </div>
       );
-      footer = null;
     }
 
     return (
-      <div
-        style={{
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-          ...this.props.style,
-        }}
-      >
-        {header}
-        {children}
-        {footer}
-      </div>
+      <Fragment>
+        {sideNav}
+        <div
+          style={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1.5)} ${rhythm(0.75)}`,
+            ...this.props.style,
+          }}
+        >
+          {header}
+          {this.props.children}
+          {footer}
+        </div>
+      </Fragment>
     );
   }
 }

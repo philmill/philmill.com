@@ -1,13 +1,16 @@
 import Typography from 'typography';
 import Wordpress2016 from 'typography-theme-wordpress-2016';
+// Import typefaces used by Wordpress2016 as part of our source
+import 'typeface-montserrat';
+import 'typeface-merriweather';
 
-Wordpress2016.overrideThemeStyles = () => ({
-  'a.gatsby-resp-image-link': {
-    boxShadow: 'none',
+Wordpress2016.overrideThemeStyles = ({ scale }) => ({
+  a: { boxShadow: 'none' },
+  h1: {
+    ...scale(1.1),
+    marginTop: '0 !important',
   },
 });
-
-delete Wordpress2016.googleFonts;
 
 const typography = new Typography(Wordpress2016);
 

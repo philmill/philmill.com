@@ -94,14 +94,17 @@ class BlogPostTemplate extends React.Component {
         >
           <a
             href={`https://github.com/philmill/philmill.com/commits/master/src/pages/${relativePath}`}
-            referrerpolicy="origin"
+            referrerPolicy="origin"
             target="_blank"
           >
             Edited {lastEdited}
           </a>
         </p>
         {post.frontmatter.featuredImage && (
-          <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+          <Img
+            fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
+            style={{ zIndex: -1 }}
+          />
         )}
         {post.frontmatter.photoCredit && (
           <p
@@ -119,15 +122,8 @@ class BlogPostTemplate extends React.Component {
           </p>
         )}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio />
         {tags && tags.length > 0 ? (
           <Fragment>
-            <h4>Tagged with:</h4>
             <ul
               style={{
                 display: 'flex',
@@ -144,8 +140,10 @@ class BlogPostTemplate extends React.Component {
             </ul>
           </Fragment>
         ) : null}
+        <Bio />
         <hr
           style={{
+            marginTop: rhythm(1),
             marginBottom: rhythm(1),
           }}
         />

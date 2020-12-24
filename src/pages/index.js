@@ -50,10 +50,7 @@ class BlogIndex extends React.Component {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link
-                  style={{ boxShadow: 'none' }}
-                  to={node.frontmatter.path || node.fields.slug}
-                >
+                <Link to={node.frontmatter.path || node.fields.slug}>
                   {title}
                 </Link>
               </h3>
@@ -62,11 +59,6 @@ class BlogIndex extends React.Component {
             </div>
           );
         })}
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
         <Bio />
       </BaseLayout>
     );
