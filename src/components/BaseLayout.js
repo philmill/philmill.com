@@ -58,22 +58,20 @@ class BaseLayout extends PureComponent {
     if (this.rootPath) {
       header = <h1>Perspectives of Phil Mill</h1>;
 
-      const footerBg = `url(${cliffPic}) no-repeat fixed`;
-      const backgroundPosition =
-        this.state.scrollY < 100 ? '10% 155%' : '0% 200%';
+      const footerBg = `url(${cliffPic}) no-repeat`;
+      const backgroundPosition = this.state.scrollY < 200 ? 0 : -150;
 
       footer = this.showFooter && (
         <div
           style={{
             position: 'fixed',
             left: 0,
-            bottom: 0,
+            bottom: backgroundPosition,
             width: '100%',
             height: rhythm(5.5),
             background: footerBg,
-            backgroundPosition,
             filter: 'brightness(110%)',
-            transition: 'background-position 300ms ease',
+            transition: 'bottom 300ms ease',
           }}
         />
       );
