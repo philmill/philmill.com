@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import get from 'lodash/get';
 import kebabCase from 'lodash/kebabCase';
 
@@ -16,12 +16,8 @@ class BlogPostTemplate extends React.Component {
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const siteDescription = post.excerpt;
     const tags = post.frontmatter.tags;
-    const {
-      previousPage,
-      nextPage,
-      lastEdited,
-      relativePath,
-    } = this.props.pageContext;
+    const { previousPage, nextPage, lastEdited, relativePath } =
+      this.props.pageContext;
 
     const metaData = [
       {
@@ -58,11 +54,11 @@ class BlogPostTemplate extends React.Component {
       metaData.push(
         {
           name: 'og:image',
-          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.fluid.src}`,
+          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.src}`,
         },
         {
           name: 'twitter:image',
-          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.fluid.src}`,
+          content: `${siteUrl}${post.frontmatter.featuredImage.childImageSharp.gatsbyImageData.src}`,
         }
       );
 
@@ -101,8 +97,11 @@ class BlogPostTemplate extends React.Component {
           </a>
         </p>
         {post.frontmatter.featuredImage && (
-          <Img
-            fluid={post.frontmatter.featuredImage.childImageSharp.fluid}
+          <GatsbyImage
+            alt={post.frontmatter.featuredImage.name}
+            image={
+              post.frontmatter.featuredImage.childImageSharp.gatsbyImageData
+            }
             style={{ zIndex: -1 }}
           />
         )}
@@ -204,10 +203,9 @@ export const pageQuery = graphql`
         path
         featuredImage {
           childImageSharp {
-            fluid(maxWidth: 630) {
-              ...GatsbyImageSharpFluid_noBase64
-            }
+            gatsbyImageData(width: 630, placeholder: NONE, layout: CONSTRAINED)
           }
+          name
         }
         photoCredit
       }

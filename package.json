@@ -5,8 +5,8 @@
   "author": "Phil Miller <phil@philmill.com>",
   "dependencies": {
     "gatsby": "^4.0.0",
-    "gatsby-image": "^3.0.0",
     "gatsby-plugin-google-analytics": "^4.0.0",
+    "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-manifest": "^4.0.0",
     "gatsby-plugin-offline": "^5.0.0",
     "gatsby-plugin-react-helmet": "^5.0.0",

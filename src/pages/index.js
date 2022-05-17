@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 
@@ -39,8 +39,12 @@ class BlogIndex extends React.Component {
             >
               {node.frontmatter.featuredImage && (
                 <Link to={node.frontmatter.path || node.fields.slug}>
-                  <Img
-                    fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
+                  <GatsbyImage
+                    alt={node.frontmatter.featuredImage.name}
+                    image={
+                      node.frontmatter.featuredImage.childImageSharp
+                        .gatsbyImageData
+                    }
                   />
                 </Link>
               )}
@@ -68,7 +72,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query {
+  {
     site {
       siteMetadata {
         title
@@ -91,10 +95,13 @@ export const pageQuery = graphql`
             path
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 630) {
-                  ...GatsbyImageSharpFluid_noBase64
-                }
+                gatsbyImageData(
+                  width: 630
+                  placeholder: NONE
+                  layout: CONSTRAINED
+                )
               }
+              name
             }
           }
         }
