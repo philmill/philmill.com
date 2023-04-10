@@ -1,8 +1,5 @@
 import Typography from 'typography';
 import Wordpress2016 from 'typography-theme-wordpress-2016';
-// Import typefaces used by Wordpress2016 as part of our source
-import 'typeface-montserrat';
-import 'typeface-merriweather';
 
 Wordpress2016.overrideThemeStyles = ({ scale }) => ({
   a: { boxShadow: 'none' },

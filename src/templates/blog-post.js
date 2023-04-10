@@ -12,12 +12,12 @@ import { rhythm, scale } from '../utils/typography';
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
+    const { previousPost, nextPost } = this.props.data;
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl');
     const siteDescription = post.excerpt;
     const tags = post.frontmatter.tags;
-    const { previousPage, nextPage, lastEdited, relativePath } =
-      this.props.pageContext;
+    const { relativePath } = this.props.pageContext;
 
     const metaData = [
       {
@@ -93,7 +93,7 @@ class BlogPostTemplate extends React.Component {
             referrerPolicy="origin"
             target="_blank"
           >
-            Edited {lastEdited}
+            All Edits
           </a>
         </p>
         {post.frontmatter.featuredImage && (
@@ -156,22 +156,22 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           <li>
-            {previousPage && (
+            {previousPost && (
               <Link
-                to={previousPage.frontmatter.path || previousPage.fields.slug}
+                to={previousPost.frontmatter.path || previousPost.fields.slug}
                 rel="prev"
               >
-                ← {previousPage.frontmatter.title}
+                ← {previousPost.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
-            {nextPage && (
+            {nextPost && (
               <Link
-                to={nextPage.frontmatter.path || previousPage.fields.slug}
-                rel="nextPage"
+                to={nextPost.frontmatter.path || previousPost.fields.slug}
+                rel="nextPost"
               >
-                {nextPage.frontmatter.title} →
+                {nextPost.frontmatter.title} →
               </Link>
             )}
           </li>
@@ -184,11 +184,14 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug(
+    $slug: String!
+    $previousPostId: String
+    $nextPostId: String
+  ) {
     site {
       siteMetadata {
         title
-        author
         siteUrl
       }
     }
@@ -208,6 +211,22 @@ export const pageQuery = graphql`
           name
         }
         photoCredit
+      }
+    }
+    previousPost: markdownRemark(id: { eq: $previousPostId }) {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+      }
+    }
+    nextPost: markdownRemark(id: { eq: $nextPostId }) {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
       }
     }
   }
